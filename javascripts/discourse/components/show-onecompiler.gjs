@@ -59,7 +59,8 @@ export default class ShowOnecompiler extends Component {
          src="https://onecompiler.com/embed/{{this.code}}" 
          width="100%"
          id="oc-editor"
-         title="OneCompiler Code Editor">
+         title="OneCompiler Code Editor"
+         listenToEvents=true>
         </iframe>
       </DModal>
     {{/if}}
