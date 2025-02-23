@@ -4,7 +4,7 @@ import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 
-export default class ShowOneCompiler extends Component {
+export default class ShowOnecompiler extends Component {
   static hidden = true;
   /*
   @action
