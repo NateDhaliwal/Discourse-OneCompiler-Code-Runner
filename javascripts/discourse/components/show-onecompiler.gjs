@@ -13,12 +13,13 @@ export default class ShowOnecompiler extends Component {
   @tracked codeLang;
   @tracked code;
 
-  async get getCode() {
+  get getCode() {
     const response = ajax(`/posts/${this.args.post.id}/raw`, {
         dataType: "text",
     });
     this.codeLang = response.split("```")[1].split(' ');
     this.code = response.replace("```", "").replace("```", "").replace(this.codeLang, "");
+    /*
     var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
     console.log(this.codeLang, this.code);
     iFrame.contentWindow.postMessage({
@@ -31,6 +32,7 @@ export default class ShowOnecompiler extends Component {
         }
       ]
     }, "*");
+    */
   } 
   
   @action
