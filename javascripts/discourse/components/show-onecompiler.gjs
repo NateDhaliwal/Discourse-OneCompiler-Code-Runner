@@ -13,6 +13,7 @@ export default class ShowOnecompiler extends Component {
   @tracked codeLang;
   @tracked code;
 
+  @action
   async getCode {
     const response = await ajax(`/posts/${this.args.post.id}/raw`, {
         dataType: "text",
