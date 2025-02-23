@@ -1,5 +1,5 @@
 import { apiInitializer } from "discourse/lib/api";
-import ShowOneCompiler from "../components/show-onecompiler";
+import ShowOnecompiler from "../components/show-onecompiler";
 
 export default apiInitializer("1.8.0", (/*api*/) => {
   api.registerValueTransformer(
@@ -8,7 +8,7 @@ export default apiInitializer("1.8.0", (/*api*/) => {
       value: dag,
       context: { lastHiddenButtonKey, secondLastHiddenButtonKey },
     }) => {
-      dag.add("show-onecompiler", ShowOneCompiler, {
+      dag.add("show-onecompiler", ShowOnecompiler, {
         before: lastHiddenButtonKey,
         after: secondLastHiddenButtonKey,
       });
