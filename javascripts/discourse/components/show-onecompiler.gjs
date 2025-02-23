@@ -33,6 +33,7 @@ export default class ShowOnecompiler extends Component {
       ]
     }, "*");
     */
+    return this.code;
   } 
   
   @action
@@ -55,6 +56,7 @@ export default class ShowOnecompiler extends Component {
 
     {{#if this.modalIsVisible}}
       <DModal @title="Code Compiler" @closeModal={{this.hideModal}}>
+        {{this.getCode}}
         <iframe
          frameBorder="0"
          height="450px"  
