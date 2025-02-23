@@ -12,11 +12,11 @@ export default class ShowOnecompiler extends Component {
   @tracked modalIsVisible;
 
   @action
-  showModal {
+  showModal() {
     this.modalIsVisible = true;
   }
   @action
-  hideModal {
+  hideModal() {
     this.modalIsVisible = false;
   }
 
