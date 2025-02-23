@@ -10,7 +10,28 @@ import { tracked } from '@glimmer/tracking';
 
 export default class ShowOnecompiler extends Component {
   @tracked modalIsVisible;
+  @tracked codeLang;
+  @tracked code;
 
+  async getCode {
+    const response = await ajax(`/posts/${this.args.post.id}/raw`, {
+        dataType: "text",
+    });
+    this.codeLang = response.split("```")[1].split(' ');
+    this.code = response.replace("```", "").replace("```", "").replace(this.codeLang, "");
+    var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
+    iFrame.contentWindow.postMessage({
+      eventType: 'populateCode',
+      language: 'python',
+      files: [
+        {
+          "name": "HelloWorld.py",
+          "content": "your code...."
+        }
+      ]
+    }, "*");
+  } 
+  
   @action
   showModal() {
     this.modalIsVisible = true;
@@ -34,7 +55,7 @@ export default class ShowOnecompiler extends Component {
         <iframe
          frameBorder="0"
          height="450px"  
-         src="https://onecompiler.com/embed/python" 
+         src="https://onecompiler.com/embed/{{this.code}}" 
          width="100%"
          id="oc-editor"
          title="OneCompiler Code Editor">
