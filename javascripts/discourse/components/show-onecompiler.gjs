@@ -3,6 +3,8 @@ import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
+import DButton from "discourse/components/d-button";
+import DModal from "discourse/components/d-modal";
 
 export default class ShowOnecompiler extends Component {
   static hidden = true;
