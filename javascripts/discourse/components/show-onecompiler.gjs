@@ -37,7 +37,8 @@ export default class ShowOnecompiler extends Component {
          height="450px"  
          src="https://onecompiler.com/embed/python" 
          width="100%"
-         >
+         id="oc-editor"
+         title="OneCompiler Code Editor">
         </iframe>
       </DModal>
     {{/if}}
