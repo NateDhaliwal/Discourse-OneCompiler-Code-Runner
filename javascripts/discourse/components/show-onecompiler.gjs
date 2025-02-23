@@ -7,24 +7,6 @@ import DButton from "discourse/components/d-button";
 import DModal from "discourse/components/d-modal";
 
 export default class ShowOnecompiler extends Component {
-  static hidden = true;
-  /*
-  @action
-  async showRaw() {
-    try {
-      const response = await ajax(`/posts/${this.args.post.id}/raw`, {
-        dataType: "text",
-      });
-      await this.modal.show(FullscreenCode, {
-        model: {
-          code: response,
-        },
-      });
-    } catch (e) {
-      popupAjaxError(e);
-    }
-  }
-  */
   
   <template>
     <DButton
