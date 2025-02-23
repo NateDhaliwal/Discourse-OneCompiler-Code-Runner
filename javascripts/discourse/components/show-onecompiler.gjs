@@ -13,14 +13,14 @@ export default class ShowOnecompiler extends Component {
   @tracked codeLang;
   @tracked code;
 
-  @action
-  async getCode() {
-    const response = await ajax(`/posts/${this.args.post.id}/raw`, {
+  async get getCode() {
+    const response = ajax(`/posts/${this.args.post.id}/raw`, {
         dataType: "text",
     });
     this.codeLang = response.split("```")[1].split(' ');
     this.code = response.replace("```", "").replace("```", "").replace(this.codeLang, "");
     var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
+    console.log(this.codeLang, this.code);
     iFrame.contentWindow.postMessage({
       eventType: 'populateCode',
       language: 'python',
