@@ -14,20 +14,23 @@ export default class ShowOnecompiler extends Component {
   @action
   showModal() {
     this.modalIsVisible = true;
+    return;
   }
+
   @action
   hideModal() {
     this.modalIsVisible = false;
+    return;
   }
 
   <template>
     <DButton
       @translatedLabel="Show Modal"
-      @action=showModal}}
+      @action={{this.showModal}}
     />
 
     {{#if this.modalIsVisible}}
-      <DModal @title="Code Compiler" @closeModal=hideModal}}>
+      <DModal @title="Code Compiler" @closeModal={{this.hideModal}}>
         <iframe
          frameBorder="0"
          height="450px"  
