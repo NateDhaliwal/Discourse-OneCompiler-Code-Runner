@@ -1,8 +1,6 @@
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
-import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
-import { popupAjaxError } from "discourse/lib/ajax-error";
 import DButton from "discourse/components/d-button";
 import DModal from "discourse/components/d-modal";
 import { tracked } from '@glimmer/tracking';
@@ -14,13 +12,10 @@ export default class ShowOnecompiler extends Component {
   @tracked code;
 
   get getCode() {
+    console.log(this.args.post);
     const response = ajax(`/posts/${this.args.post.id}/raw`, {
         dataType: "text",
-    }).then((result) => {
-        console.log(result.id);
-        return result;
-      }
-    );
+    });
 
     console.log(response.result);
     /*
