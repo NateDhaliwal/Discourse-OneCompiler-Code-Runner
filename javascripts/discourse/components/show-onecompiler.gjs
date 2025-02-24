@@ -16,9 +16,9 @@ export default class ShowOnecompiler extends Component {
     if (response.includes("```")) {
       this.codeLang = response.split("```")[1].split(' ');
       this.code = response.replace("```", "").replace("```", "").replace(this.codeLang, "");
-  
+      console.log("Set");
       var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
-      iFrameaddEventListener("load", function() {
+      iFrame.addEventListener("load", function() {
         console.log(this.codeLang, this.code);
         iFrame.contentWindow.postMessage({
           eventType: 'populateCode',
@@ -31,6 +31,8 @@ export default class ShowOnecompiler extends Component {
           ]
         }, "*");
       });
+    } else {
+      console.log("Not");
     }
     return response;
   } 
