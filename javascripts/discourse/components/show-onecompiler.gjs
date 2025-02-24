@@ -36,7 +36,7 @@ export default class ShowOnecompiler extends Component {
       ]
     }, "*");
     */
-    return this.code;
+    return response;
   } 
   
   @action
