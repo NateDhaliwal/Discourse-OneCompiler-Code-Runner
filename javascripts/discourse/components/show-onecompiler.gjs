@@ -18,19 +18,21 @@ export default class ShowOnecompiler extends Component {
       this.code = response.replace("<code>", "").replace("</code>", "").replace(this.codeLang, "");
       console.log("Set");
       var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
-      iFrame.addEventListener("load", function() {
-        console.log(this.codeLang, this.code);
-        iFrame.contentWindow.postMessage({
-          eventType: 'populateCode',
-          language: this.codeLang,
-          files: [
-            {
-              "name": "HelloWorld.py",
-              "content": this.code
-            }
-          ]
-        }, "*");
-      });
+      if (iFrame !== null) {
+        iFrame.addEventListener("load", function() {
+          console.log(this.codeLang, this.code);
+          iFrame.contentWindow.postMessage({
+            eventType: 'populateCode',
+            language: this.codeLang,
+            files: [
+              {
+                "name": "HelloWorld.py",
+                "content": this.code
+              }
+            ]
+          }, "*");
+        });
+      }
     } else {
       console.log("Not");
     }
