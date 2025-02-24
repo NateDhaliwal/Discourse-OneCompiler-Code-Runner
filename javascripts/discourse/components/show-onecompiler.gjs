@@ -13,13 +13,12 @@ export default class ShowOnecompiler extends Component {
 
   get getCode() {
     const response = this.args.post.cooked;
-    console.log(typeof response);
     if (response.includes("<pre>")) {
       this.codeLang = response.split("lang-")[1].split('">')[0];
       if (response.includes("lang-auto") {
         this.code = response.replace("<pre>", "").replace("</pre>", "").split("</code>")[0].replace('<code class="lang-auto">', "");
       } else {
-        this.code = response.replace(`<pre data-code-wrap="${this.code}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.code}`, "");
+        this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}`, "");
       }
       
       console.log("Set");
