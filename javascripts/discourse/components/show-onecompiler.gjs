@@ -13,23 +13,25 @@ export default class ShowOnecompiler extends Component {
 
   get getCode() {
     const response = this.args.post.cooked;
-    this.codeLang = response.split("```")[1].split(' ');
-    this.code = response.replace("```", "").replace("```", "").replace(this.codeLang, "");
-
-    var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
-    iFrameaddEventListener("load", function() {
-      console.log(this.codeLang, this.code);
-      iFrame.contentWindow.postMessage({
-        eventType: 'populateCode',
-        language: this.codeLang,
-        files: [
-          {
-            "name": "HelloWorld.py",
-            "content": this.code
-          }
-        ]
-      }, "*");
-    });
+    if (response.includes("```")) {
+      this.codeLang = response.split("```")[1].split(' ');
+      this.code = response.replace("```", "").replace("```", "").replace(this.codeLang, "");
+  
+      var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
+      iFrameaddEventListener("load", function() {
+        console.log(this.codeLang, this.code);
+        iFrame.contentWindow.postMessage({
+          eventType: 'populateCode',
+          language: this.codeLang,
+          files: [
+            {
+              "name": "HelloWorld.py",
+              "content": this.code
+            }
+          ]
+        }, "*");
+      });
+    }
     return response;
   } 
   
