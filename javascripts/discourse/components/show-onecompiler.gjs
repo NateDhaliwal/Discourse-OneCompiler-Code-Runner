@@ -13,9 +13,9 @@ export default class ShowOnecompiler extends Component {
 
   get getCode() {
     const response = this.args.post.cooked;
-    if (response.includes("```")) {
-      this.codeLang = response.split("```")[1].split(' ');
-      this.code = response.replace("```", "").replace("```", "").replace(this.codeLang, "");
+    if (response.includes("<pre>")) {
+      this.codeLang = response.split('">')[1].split(' ');
+      this.code = response.replace("<code>", "").replace("</code>", "").replace(this.codeLang, "");
       console.log("Set");
       var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
       iFrame.addEventListener("load", function() {
