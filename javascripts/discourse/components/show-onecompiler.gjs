@@ -22,19 +22,6 @@ export default class ShowOnecompiler extends Component {
       } else {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}">`, "");
       }
-      var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
-      if (iFrame !== null) {
-        iFrame.contentWindow.postMessage({
-          eventType: 'populateCode',
-          language: `${this.codeLang}`,
-          files: [
-            {
-              "name": `file.${this.codeLang}`,
-              "content": `${this.codeLang}`
-            }
-          ]
-        }, "*");
-      }
     } else {
       console.log("Not");
     }
