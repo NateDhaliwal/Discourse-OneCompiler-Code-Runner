@@ -12,7 +12,7 @@ export default class ShowOnecompiler extends Component {
   @tracked code;
 
   get getCode() {
-    const response = String(this.args.post.cooked);
+    const response = this.args.post.cooked;
     this.codeLang = response.split("```")[1].split(' ');
     this.code = response.replace("```", "").replace("```", "").replace(this.codeLang, "");
 
