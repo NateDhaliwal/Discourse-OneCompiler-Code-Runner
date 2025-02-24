@@ -60,6 +60,7 @@ export default class ShowOnecompiler extends Component {
         </iframe>
       </DModal>
       <script>
+        console.log(this.code);
         let iFrame = document.getElementById('oc-editor');
         iFrame.addEventListener('load', function() {
           iFrame.contentWindow.postMessage({
