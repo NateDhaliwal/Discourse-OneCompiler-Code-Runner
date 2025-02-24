@@ -25,8 +25,7 @@ export default class ShowOnecompiler extends Component {
       console.log(this.codeLang, this.code);
       console.log("Set");
       var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
-      iFrame.onload = function() {
-        
+      if (iFrame !== null) {
         iFrame.contentWindow.postMessage({
           eventType: 'populateCode',
           language: "python",
@@ -37,7 +36,7 @@ export default class ShowOnecompiler extends Component {
             }
           ]
         }, "*");
-      });
+      }
     } else {
       console.log("Not");
     }
