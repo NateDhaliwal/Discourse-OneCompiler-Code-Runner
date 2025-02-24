@@ -17,7 +17,7 @@ export default class ShowOnecompiler extends Component {
       console.log('Hi');
       this.codeLang = response.split("lang-")[1].split('">')[0];
       
-      if (response.includes("lang-auto") {
+      if (response.includes("lang-auto")) {
         this.code = response.replace("<pre>", "").replace("</pre>", "").split("</code>")[0].replace('<code class="lang-auto">', "");
       } else {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}`, "");
