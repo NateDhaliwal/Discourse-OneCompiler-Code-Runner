@@ -17,10 +17,11 @@ export default class ShowOnecompiler extends Component {
     const response = ajax(`/posts/${this.args.post.id}/raw`, {
         dataType: "text",
     }).then((result) => {
-        console.log(result.json());
-        return result.json();
+        console.log(result.id);
+        return result;
       }
     );
+
     console.log(response.result);
     /*
     this.codeLang = String(response).split("```")[1].split(' ');
