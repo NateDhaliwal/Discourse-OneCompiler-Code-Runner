@@ -23,9 +23,7 @@ export default class ShowOnecompiler extends Component {
       }
       let iFrame = document.getElementById('oc-editor');
       while (iFrame === null) {
-        setTimeout(() => {
-          console.log("Waiting for OneCompiler to load...")
-        }, 2000);
+        continue;
       }
       iFrame.addEventListener('load', function() {
         iFrame.contentWindow.postMessage({
