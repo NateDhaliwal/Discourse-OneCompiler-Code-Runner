@@ -22,6 +22,20 @@ export default class ShowOnecompiler extends Component {
       } else {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}">`, "");
       }
+      console.log(this.code);
+      let iFrame = document.getElementById('oc-editor');
+      iFrame.addEventListener('load', function() {
+        iFrame.contentWindow.postMessage({
+          eventType: 'populateCode',
+          language: "{{this.codeLang}}",
+          files: [
+            {
+              "name": "file.{{this.codeLang}}",
+              "content": "{{this.codeLang}}"
+            }
+          ]
+        }, "*");
+      });
     } else {
       console.log("Not");
     }
@@ -58,22 +72,6 @@ export default class ShowOnecompiler extends Component {
          title="OneCompiler Code Editor"
          listenToEvents="true">
         </iframe>
-        <script>
-          console.log(this.code);
-          let iFrame = document.getElementById('oc-editor');
-          iFrame.addEventListener('load', function() {
-            iFrame.contentWindow.postMessage({
-              eventType: 'populateCode',
-              language: "{{this.codeLang}}",
-              files: [
-                {
-                  "name": "file.{{this.codeLang}}",
-                  "content": "{{this.codeLang}}"
-                }
-              ]
-            }, "*");
-          });
-        </script>
       </DModal>
     {{/if}}
   </template>
