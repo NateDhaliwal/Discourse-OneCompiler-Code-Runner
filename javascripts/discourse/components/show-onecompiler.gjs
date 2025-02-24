@@ -15,7 +15,7 @@ export default class ShowOnecompiler extends Component {
     const response = this.args.post.cooked;
     if (response.includes("<pre")) {
       console.log('Hi');
-      this.codeLang = response.split("lang-")[1].split('">')[0];
+      this.codeLang = response.split("lang-")[1].split(`">`)[0];
       
       if (response.includes("lang-auto")) {
         this.code = response.replace("<pre>", "").replace("</pre>", "").split("</code>")[0].replace('<code class="lang-auto">', "");
@@ -25,7 +25,7 @@ export default class ShowOnecompiler extends Component {
       console.log(this.codeLang, this.code);
       console.log("Set");
       var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
-      iFrame.addEventListener("load", function() {
+      iFrame.onload = function() {
         
         iFrame.contentWindow.postMessage({
           eventType: 'populateCode',
