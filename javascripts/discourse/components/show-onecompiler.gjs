@@ -13,10 +13,8 @@ export default class ShowOnecompiler extends Component {
 
   get getCode() {
     const response = this.args.post.cooked;
-    console.log(typeof response);
-    if (response.includes("<pre>")) {
+    if (response.includes("<pre")) {
       console.log('Hi');
-      /*
       this.codeLang = response.split("lang-")[1].split('">')[0];
       
       if (response.includes("lang-auto") {
@@ -42,7 +40,6 @@ export default class ShowOnecompiler extends Component {
           }, "*");
         });
       }
-      */
     } else {
       console.log("Not");
     }
