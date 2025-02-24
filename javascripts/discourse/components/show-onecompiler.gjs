@@ -65,7 +65,7 @@ export default class ShowOnecompiler extends Component {
         <iframe
          frameBorder="0"
          height="450px"  
-         src="https://onecompiler.com/embed/{{this.code}}" 
+         src="https://onecompiler.com/embed/{{this.codeLang}}" 
          width="100%"
          id="oc-editor"
          title="OneCompiler Code Editor"
