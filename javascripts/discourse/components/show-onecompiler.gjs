@@ -14,7 +14,6 @@ export default class ShowOnecompiler extends Component {
   get getCode() {
     const response = this.args.post.cooked;
     if (response.includes("<pre")) {
-      console.log('Hi');
       this.codeLang = response.split('<pre data-code-wrap="')[1].split('"')[0];
       
       if (response.includes("lang-auto")) {
@@ -22,8 +21,12 @@ export default class ShowOnecompiler extends Component {
       } else {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}">`, "");
       }
-      console.log(this.code);
       let iFrame = document.getElementById('oc-editor');
+      while (iFrame === null) {
+        setTimeout(() => {
+          console.log("Waiting for OneCompiler to load...")
+        }, 2000);
+      }
       iFrame.addEventListener('load', function() {
         iFrame.contentWindow.postMessage({
           eventType: 'populateCode',
