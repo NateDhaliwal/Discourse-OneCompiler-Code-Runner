@@ -17,9 +17,9 @@ export default class ShowOnecompiler extends Component {
       this.codeLang = response.split("lang-")[1].split('">')[0];
       if (response.includes("lang-auto") {
         this.code = response.replace("<pre>", "").replace("</pre>", "").split("</code>")[0].replace('<code class="lang-auto">', "");
-      } else {
+      }/* else {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}`, "");
-      }
+      }*/
       
       console.log("Set");
       var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
