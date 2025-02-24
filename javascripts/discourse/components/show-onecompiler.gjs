@@ -64,11 +64,11 @@ export default class ShowOnecompiler extends Component {
         iFrame.addEventListener('load', function() {
           iFrame.contentWindow.postMessage({
             eventType: 'populateCode',
-            language: "{{this.codeLang}}",
+            language: "this.codeLang",
             files: [
               {
-                "name": "file.{{this.codeLang}}",
-                "content": "{{this.codeLang}}"
+                "name": "file.(this.codeLang)",
+                "content": "this.codeLang"
               }
             ]
           }, "*");
