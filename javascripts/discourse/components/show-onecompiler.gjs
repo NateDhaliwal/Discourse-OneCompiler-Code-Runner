@@ -12,30 +12,24 @@ export default class ShowOnecompiler extends Component {
   @tracked code;
 
   get getCode() {
-    console.log(this.args.post);
-    const response = ajax(`/posts/${this.args.post.id}/raw`, {
-        dataType: "text",
-    });
+    response = String(this.ags.post.cooked);
+    this.codeLang = response.split("```")[1].split(' ');
+    this.code = response.replace("```", "").replace("```", "").replace(this.codeLang, "");
 
-    console.log(response.result);
-    /*
-    this.codeLang = String(response).split("```")[1].split(' ');
-    this.code = String(response).replace("```", "").replace("```", "").replace(this.codeLang, "");
-    */
-    /*
     var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
-    console.log(this.codeLang, this.code);
-    iFrame.contentWindow.postMessage({
-      eventType: 'populateCode',
-      language: 'python',
-      files: [
-        {
-          "name": "HelloWorld.py",
-          "content": "your code...."
-        }
-      ]
-    }, "*");
-    */
+    iFrameaddEventListener("load", function() {
+      console.log(this.codeLang, this.code);
+      iFrame.contentWindow.postMessage({
+        eventType: 'populateCode',
+        language: this.codeLang,
+        files: [
+          {
+            "name": "HelloWorld.py",
+            "content": this.code
+          }
+        ]
+      }, "*");
+    });
     return response;
   } 
   
