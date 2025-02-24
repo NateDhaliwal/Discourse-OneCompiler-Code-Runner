@@ -72,6 +72,21 @@ export default class ShowOnecompiler extends Component {
          listenToEvents="true">
         </iframe>
       </DModal>
+      <script>
+        let iFrame = document.getElementById('oc-editor');
+        iFrame.addEventListener('load', function() {
+          iFrame.contentWindow.postMessage({
+            eventType: 'populateCode',
+            language: "{{this.codeLang}}",
+            files: [
+              {
+                "name": "file.{{this.codeLang}}",
+                "content": "{{this.codeLang}}"
+              }
+            ]
+          }, "*");
+        });
+      </script>
     {{/if}}
   </template>
 }
