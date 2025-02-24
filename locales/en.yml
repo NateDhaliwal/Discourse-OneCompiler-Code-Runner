@@ -1,5 +1,5 @@
 en:
   theme_metadata:
-    description: "TODO"
+    description: "OneComiler code runner for posts with codeblocks."
     settings:
       example_setting: "A description of a setting."
