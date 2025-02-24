@@ -22,17 +22,15 @@ export default class ShowOnecompiler extends Component {
       } else {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}">`, "");
       }
-      console.log(this.codeLang);
-      console.log("Set");
       var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
       if (iFrame !== null) {
         iFrame.contentWindow.postMessage({
           eventType: 'populateCode',
-          language: "python",
+          language: `${this.codeLang}`,
           files: [
             {
-              "name": `file.txt`,
-              "content": "Hello"
+              "name": `file.${this.codeLang}`,
+              "content": `${this.codeLang}`
             }
           ]
         }, "*");
