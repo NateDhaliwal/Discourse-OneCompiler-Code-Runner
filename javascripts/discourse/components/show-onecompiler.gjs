@@ -14,8 +14,13 @@ export default class ShowOnecompiler extends Component {
   get getCode() {
     const response = this.args.post.cooked;
     if (response.includes("<pre>")) {
-      this.codeLang = response.split('">')[1].split(' ');
-      this.code = response.replace("<code>", "").replace("</code>", "").replace(this.codeLang, "");
+      this.codeLang = response.split("lang-")[1].split('">')[0];
+      if (response.includes("lang-auto") {
+        this.code = response.replace("<pre>", "").replace("</pre>", "").split("</code>")[0].replace('<code class="lang-auto">', "");
+      } else {
+        this.code = response.replace(`<pre data-code-wrap="${this.code}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.code}`, "");
+      }
+      
       console.log("Set");
       var iFrame = document.getElementById('oc-editor'); // add an ID for the <iframe tag
       if (iFrame !== null) {
@@ -26,7 +31,7 @@ export default class ShowOnecompiler extends Component {
             language: this.codeLang,
             files: [
               {
-                "name": "HelloWorld.py",
+                "name": `file.${this.codeLang}`,
                 "content": this.code
               }
             ]
