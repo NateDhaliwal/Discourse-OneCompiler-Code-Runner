@@ -17,6 +17,7 @@ export default class ShowOnecompiler extends Component {
     const response = ajax(`/posts/${this.args.post.id}/raw`, {
         dataType: "text",
     });
+    console.log(response)
     /*
     this.codeLang = String(response).split("```")[1].split(' ');
     this.code = String(response).replace("```", "").replace("```", "").replace(this.codeLang, "");
