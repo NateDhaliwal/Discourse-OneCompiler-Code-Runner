@@ -46,7 +46,6 @@ export default class ShowOnecompiler extends Component {
     } else {
       console.log("Not");
     }
-    */
     return response;
   } 
   
