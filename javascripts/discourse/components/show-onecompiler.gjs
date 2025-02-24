@@ -13,7 +13,7 @@ export default class ShowOnecompiler extends Component {
 
   get getCode() {
     const response = this.args.post.cooked;
-    
+    console.log(typeof response);
     if (response.includes("<pre>")) {
       console.log('Hi');
       /*
