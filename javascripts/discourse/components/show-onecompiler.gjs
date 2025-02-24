@@ -31,8 +31,8 @@ export default class ShowOnecompiler extends Component {
             language: this.codeLang,
             files: [
               {
-                "name": `file.${this.codeLang}`,
-                "content": this.code
+                "name": `file.txt`,
+                "content": "Hello"
               }
             ]
           }, "*");
