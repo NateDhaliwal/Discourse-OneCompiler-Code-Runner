@@ -14,7 +14,7 @@ export default class ShowOnecompiler extends Component {
   get getCode() {
     const response = this.args.post.cooked;
     if (response.includes("<pre>")) {
-      this.codeLang = response.split("lang-")[1].split('">')[0];
+      //this.codeLang = response.split("lang-")[1].split('">')[0];
       if (response.includes("lang-auto") {
         this.code = response.replace("<pre>", "").replace("</pre>", "").split("</code>")[0].replace('<code class="lang-auto">', "");
       }/* else {
