@@ -16,7 +16,11 @@ export default class ShowOnecompiler extends Component {
   get getCode() {
     const response = ajax(`/posts/${this.args.post.id}/raw`, {
         dataType: "text",
-    });
+    }).then((result) => {
+        console.log(result.json());
+        return result.json();
+      }
+    );
     console.log(response.result);
     /*
     this.codeLang = String(response).split("```")[1].split(' ');
