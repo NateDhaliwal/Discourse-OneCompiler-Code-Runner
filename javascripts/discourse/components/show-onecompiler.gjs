@@ -58,7 +58,7 @@ export default class ShowOnecompiler extends Component {
 
     {{#if this.modalIsVisible}}
       <DModal @title="Code Compiler" @closeModal={{this.hideModal}}>
-        {{this.getCode}}
+        <p>Code: {{this.getCode}}</p>
         <iframe
          frameBorder="0"
          height="450px"  
