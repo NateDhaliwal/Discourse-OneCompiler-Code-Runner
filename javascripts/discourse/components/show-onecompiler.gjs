@@ -50,6 +50,7 @@ export default class ShowOnecompiler extends Component {
         }
       ]
     }, "*");
+    return;
   }
 
 
@@ -63,14 +64,14 @@ export default class ShowOnecompiler extends Component {
       <DModal @title="Code Compiler" @closeModal={{this.hideModal}}>
         <p>Code: {{this.getCode}}</p>
         <iframe
-         frameBorder="0"
-         height="450px"  
-         src="https://onecompiler.com/embed/{{this.codeLang}}" 
-         width="100%"
-         id="oc-editor"
-         title="OneCompiler Code Editor"
-         listenToEvents="true"
-         {{on "load" this.onIframeLoaded()}}>
+          frameBorder="0"
+          height="450px"  
+          src="https://onecompiler.com/embed/{{this.codeLang}}" 
+          width="100%"
+          id="oc-editor"
+          title="OneCompiler Code Editor"
+          listenToEvents="true"
+          {{on "load" this.onIframeLoaded()}}>
         </iframe>
       </DModal>
     {{/if}}
