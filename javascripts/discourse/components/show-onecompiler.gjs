@@ -20,21 +20,7 @@ export default class ShowOnecompiler extends Component {
       } else {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}">`, "");
       }
-      let iFrame = document.getElementById('oc-editor');
-      if (iFrame !== null) {
-        iFrame.addEventListener('load', function() {
-          iFrame.contentWindow.postMessage({
-            eventType: 'populateCode',
-            language: "{{this.codeLang}}",
-            files: [
-              {
-                "name": "file.{{this.codeLang}}",
-                "content": "{{this.codeLang}}"
-              }
-            ]
-          }, "*");
-        });
-      }
+
     }
     return response;
   } 
@@ -50,6 +36,22 @@ export default class ShowOnecompiler extends Component {
     this.modalIsVisible = false;
     return;
   }
+
+  @action
+  onIframeLoaded() {
+    let iFrame = document.getElementById('oc-editor');
+    iFrame.contentWindow.postMessage({
+      eventType: 'populateCode',
+      language: "{{this.codeLang}}",
+      files: [
+        {
+          "name": "file.{{this.codeLang}}",
+          "content": "{{this.codeLang}}"
+        }
+      ]
+    }, "*");
+  }
+
 
   <template>
     <DButton
@@ -67,7 +69,8 @@ export default class ShowOnecompiler extends Component {
          width="100%"
          id="oc-editor"
          title="OneCompiler Code Editor"
-         listenToEvents="true">
+         listenToEvents="true"
+         {{on "load" this.onIframeLoaded()}}>
         </iframe>
       </DModal>
     {{/if}}
