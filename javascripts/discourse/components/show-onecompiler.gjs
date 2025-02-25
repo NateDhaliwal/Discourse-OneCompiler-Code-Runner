@@ -1,6 +1,5 @@
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
-import { ajax } from "discourse/lib/ajax";
 import DButton from "discourse/components/d-button";
 import DModal from "discourse/components/d-modal";
 import { tracked } from '@glimmer/tracking';
@@ -22,23 +21,20 @@ export default class ShowOnecompiler extends Component {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}">`, "");
       }
       let iFrame = document.getElementById('oc-editor');
-      while (iFrame === null) {
-        continue;
+      if (iFrame !== null) {
+        iFrame.addEventListener('load', function() {
+          iFrame.contentWindow.postMessage({
+            eventType: 'populateCode',
+            language: "{{this.codeLang}}",
+            files: [
+              {
+                "name": "file.{{this.codeLang}}",
+                "content": "{{this.codeLang}}"
+              }
+            ]
+          }, "*");
+        });
       }
-      iFrame.addEventListener('load', function() {
-        iFrame.contentWindow.postMessage({
-          eventType: 'populateCode',
-          language: "{{this.codeLang}}",
-          files: [
-            {
-              "name": "file.{{this.codeLang}}",
-              "content": "{{this.codeLang}}"
-            }
-          ]
-        }, "*");
-      });
-    } else {
-      console.log("Not");
     }
     return response;
   } 
