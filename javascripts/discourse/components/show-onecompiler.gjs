@@ -38,7 +38,7 @@ export default class ShowOnecompiler extends Component {
   }
 
   @action
-  onIframeLoaded() {
+  onIframeLoaded(event) {
     let iFrame = document.getElementById('oc-editor');
     iFrame.contentWindow.postMessage({
       eventType: 'populateCode',
