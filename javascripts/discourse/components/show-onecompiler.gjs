@@ -71,7 +71,7 @@ export default class ShowOnecompiler extends Component {
           id="oc-editor"
           title="OneCompiler Code Editor"
           listenToEvents="true"
-          {{on "load" this.onIframeLoaded()}}>
+          {{on "load" this.onIframeLoaded}}>
         </iframe>
       </DModal>
     {{/if}}
