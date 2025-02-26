@@ -17,7 +17,7 @@ export default class ShowOnecompiler extends Component {
     const response = this.args.post.cooked;
     if (response.includes("<pre")) {
       this.codeLang = response.split('<pre data-code-wrap="')[1].split('"')[0];
-      
+
       if (response.includes("lang-auto")) {
         this.code = response.replace("<pre>", "").replace("</pre>", "").split("</code>")[0].replace('<code class="lang-auto">', "");
       } else {
@@ -26,8 +26,8 @@ export default class ShowOnecompiler extends Component {
 
     }
     return;
-  } 
-  
+  }
+
   @action
   showModal() {
     this.modalIsVisible = true;
@@ -62,9 +62,9 @@ export default class ShowOnecompiler extends Component {
         @translatedLabel="Show Modal"
         @action={{this.showModal}}
       />
-  
       {{#if this.modalIsVisible}}
-        <DModal @title="Code Compiler" @closeModal={{this.hideModal}} {{on "load" this.getCode}}>
+        <DModal @title="Code Compiler" @closeModal={{this.hideModal}}>
+          {{this.onIframeLoaded}}
           <iframe
             frameBorder="0"
             height="450px"  
