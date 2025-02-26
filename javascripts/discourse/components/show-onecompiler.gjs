@@ -10,10 +10,12 @@ export default class ShowOnecompiler extends Component {
   @tracked modalIsVisible;
   @tracked codeLang;
   @tracked code;
+  @tracked modalShouldShow;
 
   get getCode() {
     const response = this.args.post.cooked;
     if (response.includes("<pre")) {
+      this.modalShouldShow = true;
       this.codeLang = response.split('<pre data-code-wrap="')[1].split('"')[0];
       
       if (response.includes("lang-auto")) {
@@ -22,6 +24,8 @@ export default class ShowOnecompiler extends Component {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}">`, "");
       }
 
+    } else {
+      this.modalShouldShow = false;
     }
     return response;
   } 
@@ -47,7 +51,7 @@ export default class ShowOnecompiler extends Component {
       files: [
         {
           "name": "file.{{this.codeLang}}",
-          "content": "{{this.codeLang}}"
+          "content": "{{this.code}}"
         }
       ]
     }, "*");
@@ -56,24 +60,26 @@ export default class ShowOnecompiler extends Component {
 
 
   <template>
-    <DButton
-      @translatedLabel="Show Modal"
-      @action={{this.showModal}}
-    />
-
-    {{#if this.modalIsVisible}}
-      <DModal @title="Code Compiler" @closeModal={{this.hideModal}}>
-        <p>Code: {{this.getCode}}</p>
-        <iframe
-          frameBorder="0"
-          height="450px"  
-          src="https://onecompiler.com/embed/{{this.codeLang}}?listenToEvents=true" 
-          width="100%"
-          id="oc-editor"
-          title="OneCompiler Code Editor"
-          {{on "load" this.onIframeLoaded}}>
-        </iframe>
-      </DModal>
+    {{#if this.modalShouldShow}}
+      <DButton
+        @translatedLabel="Show Modal"
+        @action={{this.showModal}}
+      />
+  
+      {{#if this.modalIsVisible}}
+        <DModal @title="Code Compiler" @closeModal={{this.hideModal}}>
+          <p style="whitespace: pre-wrap;">Code: {{this.getCode}}</p>
+          <iframe
+            frameBorder="0"
+            height="450px"  
+            src="https://onecompiler.com/embed/{{this.codeLang}}?listenToEvents=true" 
+            width="100%"
+            id="oc-editor"
+            title="OneCompiler Code Editor"
+            {{on "load" this.onIframeLoaded}}>
+          </iframe>
+        </DModal>
+      {{/if}}
     {{/if}}
   </template>
 }
