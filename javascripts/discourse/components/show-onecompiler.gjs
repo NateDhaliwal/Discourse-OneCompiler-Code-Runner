@@ -3,6 +3,7 @@ import { action } from "@ember/object";
 import DButton from "discourse/components/d-button";
 import DModal from "discourse/components/d-modal";
 import { tracked } from '@glimmer/tracking';
+import { on } from "@ember/modifier";
 
 
 export default class ShowOnecompiler extends Component {
