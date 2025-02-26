@@ -10,12 +10,11 @@ export default class ShowOnecompiler extends Component {
   @tracked modalIsVisible;
   @tracked codeLang;
   @tracked code;
-  @tracked modalShouldShow;
+  @tracked modalShouldShow = (this.args.post.cooked).includes("lang-");
 
   get getCode() {
     const response = this.args.post.cooked;
     if (response.includes("<pre")) {
-      this.modalShouldShow = true;
       this.codeLang = response.split('<pre data-code-wrap="')[1].split('"')[0];
       
       if (response.includes("lang-auto")) {
@@ -24,8 +23,6 @@ export default class ShowOnecompiler extends Component {
         this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}">`, "");
       }
 
-    } else {
-      this.modalShouldShow = false;
     }
     return response;
   } 
