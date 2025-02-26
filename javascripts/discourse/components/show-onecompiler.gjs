@@ -40,8 +40,6 @@ export default class ShowOnecompiler extends Component {
 
   @action
   onIframeLoaded() {
-    console.log(this.code);
-    console.log(this.codeLang);
     let iFrame = document.getElementById('oc-editor');
     iFrame.contentWindow.postMessage({
       eventType: 'populateCode',
@@ -69,11 +67,10 @@ export default class ShowOnecompiler extends Component {
         <iframe
           frameBorder="0"
           height="450px"  
-          src="https://onecompiler.com/embed/{{this.codeLang}}" 
+          src="https://onecompiler.com/embed/{{this.codeLang}}?listenToEvents=true" 
           width="100%"
           id="oc-editor"
           title="OneCompiler Code Editor"
-          listenToEvents="true"
           {{on "load" this.onIframeLoaded}}>
         </iframe>
       </DModal>
