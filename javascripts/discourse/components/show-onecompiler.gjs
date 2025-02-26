@@ -12,7 +12,8 @@ export default class ShowOnecompiler extends Component {
   @tracked code;
   @tracked modalShouldShow = (this.args.post.cooked).includes("lang-");
 
-  get getCode() {
+  @action
+  getCode() {
     const response = this.args.post.cooked;
     if (response.includes("<pre")) {
       this.codeLang = response.split('<pre data-code-wrap="')[1].split('"')[0];
@@ -24,7 +25,7 @@ export default class ShowOnecompiler extends Component {
       }
 
     }
-    return response;
+    return;
   } 
   
   @action
@@ -43,7 +44,7 @@ export default class ShowOnecompiler extends Component {
   onIframeLoaded() {
     let iFrame = document.getElementById('oc-editor');
     iFrame.contentWindow.postMessage({
-      eventType: 'populateCode',
+      eventType: "populateCode",
       language: "{{this.codeLang}}",
       files: [
         {
@@ -55,7 +56,6 @@ export default class ShowOnecompiler extends Component {
     return;
   }
 
-
   <template>
     {{#if this.modalShouldShow}}
       <DButton
@@ -64,8 +64,7 @@ export default class ShowOnecompiler extends Component {
       />
   
       {{#if this.modalIsVisible}}
-        <DModal @title="Code Compiler" @closeModal={{this.hideModal}}>
-          <p style="whitespace: pre-wrap;">Code: {{this.getCode}}</p>
+        <DModal @title="Code Compiler" @closeModal={{this.hideModal}} {{on "load" this.getCode}}>
           <iframe
             frameBorder="0"
             height="450px"  
