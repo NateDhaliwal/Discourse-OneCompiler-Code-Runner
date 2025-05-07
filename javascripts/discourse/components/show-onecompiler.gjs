@@ -46,11 +46,11 @@ export default class ShowOnecompiler extends Component {
     let iFrame = document.getElementById('oc-editor');
     iFrame.contentWindow.postMessage({
       eventType: "populateCode",
-      language: "{{this.codeLang}}",
+      language: `${this.codeLang}",
       files: [
         {
-          "name": "file.{{this.codeLang}}",
-          "content": "{{this.code}}"
+          "name": `file.${this.codeLang}`,
+          "content": `${this.code}`
         }
       ]
     }, "*");
