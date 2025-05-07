@@ -15,7 +15,6 @@ export default class ShowOnecompiler extends Component {
   @action
   getCode() {
     const response = this.args.post.cooked;
-    console.log(this.args.post);
     if (response.includes("<pre")) {
       this.codeLang = response.split('<pre data-code-wrap="')[1].split('"')[0];
 
@@ -44,6 +43,8 @@ export default class ShowOnecompiler extends Component {
   @action
   onIframeLoaded() {
     let iFrame = document.getElementById('oc-editor');
+    console.log(this.codeLang);
+    console.log(this.code);
     iFrame.contentWindow.postMessage({
       eventType: "populateCode",
       language: "${this.codeLang}",
