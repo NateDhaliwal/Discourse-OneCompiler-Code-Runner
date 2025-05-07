@@ -15,7 +15,7 @@ export default class ShowOnecompiler extends Component {
   @action
   getCode() {
     const response = this.args.post.cooked;
-    console.log(reponse);
+    console.log(this.args);
     if (response.includes("<pre")) {
       this.codeLang = response.split('<pre data-code-wrap="')[1].split('"')[0];
 
