@@ -7,6 +7,20 @@ import { on } from "@ember/modifier";
 
 
 export default class ShowOnecompiler extends Component {
+  file_extensions = {
+    "python": "py",
+    "py": "py",
+    "javascript": "js",
+    "js": "js",
+    "cpp": "cpp",
+    "java": "java",
+    "cs": "cs",
+    "csharp": "cs",
+    "rb": "rb",
+    "ruby": "rb",
+    "sql": "sql"
+  }
+
   @tracked modalIsVisible;
   @tracked codeLang;
   @tracked code;
@@ -52,7 +66,7 @@ export default class ShowOnecompiler extends Component {
       language: `${this.codeLang}`,
       files: [
         {
-          "name": `file.${this.codeLang}`,
+          "name": `code.${this.file_extensions[this.codeLang]}`,
           "content": `${this.code}`
         }
       ]
