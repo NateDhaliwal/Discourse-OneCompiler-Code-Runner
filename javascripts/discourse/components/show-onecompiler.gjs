@@ -14,7 +14,7 @@ export default class ShowOnecompiler extends Component {
 
   @action
   getCode() {
-    console.log(this.args);
+    console.log(this.args.post);
     const response = this.args.post.cooked;
     console.log(response);
     if (response.includes("<pre")) {
