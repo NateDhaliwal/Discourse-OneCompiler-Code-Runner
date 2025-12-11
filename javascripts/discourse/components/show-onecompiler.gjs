@@ -49,7 +49,7 @@ export default class ShowOnecompiler extends Component {
     console.log(this.code);
     iFrame.contentWindow.postMessage({
       eventType: "populateCode",
-      language: "${this.codeLang}",
+      language: `${this.codeLang}`,
       files: [
         {
           "name": `file.${this.codeLang}`,
