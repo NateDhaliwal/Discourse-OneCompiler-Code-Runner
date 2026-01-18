@@ -6,7 +6,7 @@ import { tracked } from '@glimmer/tracking';
 import { on } from "@ember/modifier";
 
 
-export default class ShowOnecompiler extends Component {
+export default class OneCompilerEmbed extends Component {
   file_extensions = {
     "python": "py",
     "py": "py",
@@ -26,28 +26,8 @@ export default class ShowOnecompiler extends Component {
   @tracked code;
   @tracked modalShouldShow = (this.args.post.cooked).includes("lang-");
 
-  @action
-  getCode() {
-    console.log(this.args.post);
-    const response = this.args.post.cooked;
-    console.log(response);
-    if (response.includes("<pre")) {
-      this.codeLang = response.split('<pre data-code-wrap="')[1].split('"')[0];
-
-      if (response.includes("lang-auto")) {
-        this.code = response.replace("<pre>", "").replace("</pre>", "").split("</code>")[0].replace('<code class="lang-auto">', "");
-      } else {
-        this.code = response.replace(`<pre data-code-wrap="${this.codeLang}">`, "").replace("</pre>", "").split("</code>")[0].replace(`<code class="lang-${this.codeLang}">`, "");
-      }
-
-    }
-    return;
-  }
-
-  @action
-  showModal() {
-    this.modalIsVisible = true;
-    return;
+  get code() {
+    return this.args.code;
   }
 
   @action
