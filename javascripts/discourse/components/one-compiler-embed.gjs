@@ -1,10 +1,8 @@
 import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
-import DButton from "discourse/components/d-button";
-import DModal from "discourse/components/d-modal";
-import { tracked } from '@glimmer/tracking';
+import { concat } from "@ember/helper";
 import { on } from "@ember/modifier";
-
 
 export default class OneCompilerEmbed extends Component {
   file_extensions = {
@@ -49,7 +47,7 @@ export default class OneCompilerEmbed extends Component {
     <iframe
       frameBorder="0"
       height="450px"
-      src="https://onecompiler.com/embed/{{this.codeLang}}?listenToEvents=true&hideLanguageSelection=true&hideNew=true"
+      src={{(concat "https://onecompiler.com/embed/" this.codeLang "?listenToEvents=true&hideLanguageSelection=true&hideNew=true")}}
       width="100%"
       id="oc-editor"
       title="OneCompiler Code Editor"
