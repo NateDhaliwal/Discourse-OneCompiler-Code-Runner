@@ -21,20 +21,11 @@ export default class OneCompilerEmbed extends Component {
     "sql": "sql"
   }
 
-  @tracked modalIsVisible;
-  @tracked codeLang;
-  @tracked code;
-  @tracked modalShouldShow = (this.args.post.cooked).includes("lang-");
-
   get code() {
     return this.args.code;
   }
 
-  @action
-  hideModal() {
-    this.modalIsVisible = false;
-    return;
-  }
+  get codeLanguage() {}
 
   @action
   onIframeLoaded() {
@@ -55,25 +46,13 @@ export default class OneCompilerEmbed extends Component {
   }
 
   <template>
-    {{#if this.modalShouldShow}}
-      <DButton
-        @translatedLabel="Show Modal"
-        @action={{this.showModal}}
-      />
-      {{#if this.modalIsVisible}}
-        <DModal @title="Code Compiler" @closeModal={{this.hideModal}}>
-          {{this.getCode}}
-          <iframe
-            frameBorder="0"
-            height="450px"
-            src="https://onecompiler.com/embed/{{this.codeLang}}?listenToEvents=true&hideLanguageSelection=true&hideNew=true"
-            width="100%"
-            id="oc-editor"
-            title="OneCompiler Code Editor"
-            {{on "load" this.onIframeLoaded}}>
-          </iframe>
-        </DModal>
-      {{/if}}
-    {{/if}}
+    <iframe
+      frameBorder="0"
+      height="450px"
+      src="https://onecompiler.com/embed/{{this.codeLang}}?listenToEvents=true&hideLanguageSelection=true&hideNew=true"
+      width="100%"
+      id="oc-editor"
+      title="OneCompiler Code Editor"
+    </iframe>
   </template>
 }
