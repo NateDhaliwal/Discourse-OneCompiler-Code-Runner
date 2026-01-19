@@ -1,9 +1,11 @@
 import { apiInitializer } from "discourse/lib/api";
-import Component from "@glimmer/component";
+import OneCompilerEmbed from "../components/one-compiler-embed";
 
 export default apiInitializer((api) => {
   api.renderAfterWrapperOutlet(
     "fullscreen-codeblock-code",
-    class ShowOneCompilerEmbed extends Component {}
+    <template>
+      <OneCompilerEmbed @code={{@code}} />
+    </template>
   );
 }
