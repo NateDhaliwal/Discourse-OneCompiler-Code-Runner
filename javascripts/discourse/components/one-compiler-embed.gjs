@@ -52,5 +52,21 @@ export default class OneCompilerEmbed extends Component {
       id="oc-editor"
       title="OneCompiler Code Editor"
     ></iframe>
+    <script>
+      const iFrame = document.getElementById('oc-editor');
+      console.log(this.codeLang);
+      console.log(this.code);
+      iFrame.contentWindow.postMessage({
+        eventType: "populateCode",
+        language: {{this.codeLang}},
+        files: [
+          {
+            "name": {{this['code'][`${this.file_extensions[this.codeLang]}`]}},
+            "content": {{this.code}}
+          }
+        ]
+      }, "*");
+      return;
+    </script>
   </template>
 }
