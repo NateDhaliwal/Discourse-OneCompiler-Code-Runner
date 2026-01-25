@@ -44,6 +44,7 @@ export default class OneCompilerEmbed extends Component {
   }
 
   <template>
+    {{log this['code'][`${this.file_extensions[this.codeLang]}`]}}
     <iframe
       frameBorder="0"
       height="450px"
