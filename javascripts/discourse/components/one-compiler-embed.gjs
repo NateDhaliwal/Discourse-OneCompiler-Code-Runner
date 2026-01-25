@@ -44,11 +44,11 @@ export default class OneCompilerEmbed extends Component {
   }
 
   <template>
-    {{log (concat "https://onecompiler.com/embed/" this.codeLang "?listenToEvents=true&hideLanguageSelection=true&hideNew=true")}}
     <iframe
       frameBorder="0"
       height="450px"
       width="100%"
+      src={{(concat "https://onecompiler.com/embed/" this.codeLang "?listenToEvents=true&hideLanguageSelection=true&hideNew=true")}}
       id="oc-editor"
       title="OneCompiler Code Editor"
     </iframe>
