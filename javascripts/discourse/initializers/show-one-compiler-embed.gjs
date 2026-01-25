@@ -8,4 +8,4 @@ export default apiInitializer((api) => {
       <OneCompilerEmbed @code={{@code}} />
     </template>
   );
-}
+});
