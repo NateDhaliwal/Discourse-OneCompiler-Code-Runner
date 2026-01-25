@@ -51,6 +51,6 @@ export default class OneCompilerEmbed extends Component {
       src={{(concat "https://onecompiler.com/embed/" this.codeLang "?listenToEvents=true&hideLanguageSelection=true&hideNew=true")}}
       id="oc-editor"
       title="OneCompiler Code Editor"
-    </iframe>
+    ></iframe>
   </template>
 }
