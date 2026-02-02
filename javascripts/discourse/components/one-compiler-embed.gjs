@@ -1,9 +1,12 @@
 import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 import { concat } from "@ember/helper";
 import { action } from "@ember/object";
+import ConditionalLoadingSpiner from "discourse/components/conditional-loading-spinner";
 import DButton from "discourse/components/d-button";
 
 export default class OneCompilerEmbed extends Component {
+  @tracked loading = false;
 
   file_extensions = {
     "java": "java",
@@ -123,6 +126,7 @@ export default class OneCompilerEmbed extends Component {
   loadIframe() {
     const iFrame = document.getElementById(`oc-editor-${this.iFrameId}`);
     if (iFrame) {
+      this.loading = true;
       const language = this.codeLanguage(`oc-editor-${this.iFrameId}`);
       iFrame.src = `https://onecompiler.com/embed/${language}?listenToEvents=true&hideLanguageSelection=${!settings.show_language_switcher}&hideNewFileOption=${!settings.show_create_new_file_button}`;
       setTimeout(() => {
@@ -138,6 +142,8 @@ export default class OneCompilerEmbed extends Component {
           ]
         }, "*");
       }, 1000);
+
+      this.loading = false;
     }
   }
 
@@ -147,6 +153,9 @@ export default class OneCompilerEmbed extends Component {
       @action={{this.loadIframe}}
       @label={{(themePrefix "load_iframe_button")}}
     />
+
+    <ConditionalLoadingSpinner @condition={{this.loading}} />
+
     <iframe
       frameBorder="0"
       height="450px"
