@@ -54,7 +54,7 @@ export default class OneCompilerEmbed extends Component {
     iFrame.height = "450px";
     iFrame.width = "100%";
     iFrame.src = `https://onecompiler.com/embed/${this.codeLang}?listenToEvents=true&hideLanguageSelection=true&hideNew=true`;
-    iFrame.id = `oc-editor-${document.querySelector("iframe[data-onecompiler]").length.toString()}`;
+    iFrame.id = `oc-editor-${document.querySelectorAll("iframe[data-onecompiler]").length.toString()}`;
     iFrame.dataset.onecompiler = true;
 
     iFrame.contentWindow.postMessage({
