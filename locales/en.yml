@@ -1,5 +1,4 @@
 en:
   theme_metadata:
     description: "OneCompiler code runner for posts with codeblocks."
-    settings:
-      example_setting: "A description of a setting."
+  load_iframe_button: "Load iframe"
