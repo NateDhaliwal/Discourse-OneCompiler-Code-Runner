@@ -60,28 +60,28 @@ export default class OneCompilerEmbed extends Component {
   //   return;
   // }
 
-  @action
-  runInit() {
-    const iFrame = document.createElement("iframe");
-    iFrame.frameBorder = "0";
-    iFrame.height = "450px";
-    iFrame.width = "100%";
-    console.log(this.codeLanguage(iFrame));
-    iFrame.src = `https://onecompiler.com/embed/${this.codeLanguage(iFrame)}?listenToEvents=true&hideLanguageSelection=true&hideNew=true`;
-    iFrame.id = `oc-editor-${this.iFrameId()}`;
-    iFrame.dataset.onecompiler = true;
+  // @action
+  // runInit() {
+  //   const iFrame = document.createElement("iframe");
+  //   iFrame.frameBorder = "0";
+  //   iFrame.height = "450px";
+  //   iFrame.width = "100%";
+  //   console.log(this.codeLanguage(iFrame));
+  //   iFrame.src = `https://onecompiler.com/embed/${this.codeLanguage(iFrame)}?listenToEvents=true&hideLanguageSelection=true&hideNew=true`;
+  //   iFrame.id = `oc-editor-${this.iFrameId()}`;
+  //   iFrame.dataset.onecompiler = true;
 
-    // iFrame.contentWindow.postMessage({
-    //   eventType: "populateCode",
-    //   language: `${this.codeLanguage("oc-editor-" + this.iFrameId)}`,
-    //   files: [
-    //     {
-    //       "name": `code.${this.codeLanguage(iFrame)}`,
-    //       "content": `${this.code}`
-    //     }
-    //   ]
-    // }, "*");
-  }
+  //   // iFrame.contentWindow.postMessage({
+  //   //   eventType: "populateCode",
+  //   //   language: `${this.codeLanguage("oc-editor-" + this.iFrameId)}`,
+  //   //   files: [
+  //   //     {
+  //   //       "name": `code.${this.codeLanguage(iFrame)}`,
+  //   //       "content": `${this.code}`
+  //   //     }
+  //   //   ]
+  //   // }, "*");
+  // }
 
   @action
   loadIframe() {
@@ -89,6 +89,7 @@ export default class OneCompilerEmbed extends Component {
     console.log(iFrame);
     if (iFrame) {
       const language = this.codeLanguage(`oc-editor-${this.iFrameId}`);
+      console.log(language);
       iFrame.src = "https://onecompiler.com/embed/" + language + "?listenToEvents=true&hideLanguageSelection=true&hideNew=true";
       iFrame.style.display = "block";
       iFrame.contentWindow.postMessage({
