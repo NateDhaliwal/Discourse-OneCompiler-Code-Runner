@@ -141,7 +141,7 @@ export default class OneCompilerEmbed extends Component {
             }
           ]
         }, "*");
-      }, 1000);
+      }, 1);
 
       this.loading = false;
     }
