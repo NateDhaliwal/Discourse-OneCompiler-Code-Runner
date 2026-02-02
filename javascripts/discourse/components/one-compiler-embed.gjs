@@ -57,16 +57,16 @@ export default class OneCompilerEmbed extends Component {
     iFrame.id = `oc-editor-${document.querySelectorAll("iframe[data-onecompiler]").length.toString()}`;
     iFrame.dataset.onecompiler = true;
 
-    iFrame.contentWindow.postMessage({
-      eventType: "populateCode",
-      language: `${this.codeLang}`,
-      files: [
-        {
-          "name": `code.${this.file_extensions[this.codeLang]}`,
-          "content": `${this.code}`
-        }
-      ]
-    }, "*");
+    // iFrame.contentWindow.postMessage({
+    //   eventType: "populateCode",
+    //   language: `${this.codeLang}`,
+    //   files: [
+    //     {
+    //       "name": `code.${this.file_extensions[this.codeLang]}`,
+    //       "content": `${this.code}`
+    //     }
+    //   ]
+    // }, "*");
   }
 
   <template>
