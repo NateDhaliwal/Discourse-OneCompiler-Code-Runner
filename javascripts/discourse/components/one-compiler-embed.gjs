@@ -31,11 +31,11 @@ export default class OneCompilerEmbed extends Component {
     return document.querySelectorAll("iframe[data-onecompiler]").length.toString();
   }
 
-  codeLanguage(iFrame) {
-    const codeblockContainer = iFrame.previousElementSibling;
-    console.log(codeblockContainer)
+  codeLanguage(iFrame_id) {
+    const codeblockContainer = document.getElementById(iFrame_id).parentElement.children[0]; // pre tag
+    console.log(codeblockContainer);
     if (codeblockContainer) {
-      const codeWrapper = codeblockContainer.children[1];
+      const codeWrapper = codeblockContainer.children[1]; // code tag
       console.log(codeWrapper);
       const codeLang = codeWrapper.classList[2].split("lang-")[1];
       return codeLang;
@@ -73,7 +73,7 @@ export default class OneCompilerEmbed extends Component {
 
     // iFrame.contentWindow.postMessage({
     //   eventType: "populateCode",
-    //   language: `${this.codeLanguage(iFrame)}`,
+    //   language: `${this.codeLanguage("oc-editor-" + this.iFrameId)}`,
     //   files: [
     //     {
     //       "name": `code.${this.codeLanguage(iFrame)}`,
@@ -88,8 +88,8 @@ export default class OneCompilerEmbed extends Component {
     const iFrame = document.getElementById(`oc-editor-${this.iFrameId}`);
     console.log(iFrame);
     if (iFrame) {
-      const language = this.codeLanguage(iFrame);
-      iframe.src = "https://onecompiler.com/embed/" + language + "?listenToEvents=true&hideLanguageSelection=true&hideNew=true";
+      const language = this.codeLanguage(`oc-editor-${this.iFrameId}`);
+      iFrame.src = "https://onecompiler.com/embed/" + language + "?listenToEvents=true&hideLanguageSelection=true&hideNew=true";
       iFrame.style.display = "block";
       iFrame.contentWindow.postMessage({
         eventType: "populateCode",
