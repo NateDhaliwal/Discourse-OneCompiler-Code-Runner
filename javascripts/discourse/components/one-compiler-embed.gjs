@@ -138,17 +138,6 @@ export default class OneCompilerEmbed extends Component {
           ]
         }, "*");
       }, 1000);
-      // iFrame.style.display = "block";
-      // iFrame.contentWindow.postMessage({
-      //   eventType: "populateCode",
-      //   language: language,
-      //   files: [
-      //     {
-      //       "name": `${settings.default_file_name}.${this.file_extensions[language]}`,
-      //       "content": `${this.code}`
-      //     }
-      //   ]
-      // }, "*");
     }
   }
 
