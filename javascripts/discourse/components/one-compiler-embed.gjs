@@ -80,7 +80,7 @@ export default class OneCompilerEmbed extends Component {
     <DButton
       class="btn btn-text btn-primary"
       @action={{this.loadIframe}}
-      @label={{(themePrefix "load_iframe_button"}}
+      @label={{(themePrefix "load_iframe_button")}}
     />
     {{#if this.modalShowing}}
       <iframe
