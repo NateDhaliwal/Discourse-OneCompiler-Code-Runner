@@ -112,7 +112,7 @@ export default class OneCompilerEmbed extends Component {
   }
 
   codeLanguage(iFrame_id) {
-    const codeblockContainer = document.getElementById(iFrame_id).parentElement.children[0]; // pre tag
+    const codeblockContainer = document.getElementById(iFrame_id).parentElement.parentElement.children[0]; // pre tag
     if (codeblockContainer) {
       const codeWrapper = codeblockContainer.children[1]; // code tag
       const codeLang = codeWrapper.classList[2].split("language-")[1];
