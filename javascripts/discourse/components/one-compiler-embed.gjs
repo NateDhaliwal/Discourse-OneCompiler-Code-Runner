@@ -33,9 +33,13 @@ export default class OneCompilerEmbed extends Component {
 
   codeLanguage(iFrame) {
     const codeblockContainer = iFrame.previousElementSibling;
-    const codeWrapper = codeblockContainer.children[1];
-    const codeLang = codeWrapper.classList[2].split("lang-")[1];
-    return codeLang;
+    console.log(codeblockContainer)
+    if (codeblockContainer) {
+      const codeWrapper = codeblockContainer.children[1];
+      console.log(codeWrapper);
+      const codeLang = codeWrapper.classList[2].split("lang-")[1];
+      return codeLang;
+    }
   }
 
   // @action
