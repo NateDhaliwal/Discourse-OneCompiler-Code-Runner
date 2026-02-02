@@ -125,30 +125,30 @@ export default class OneCompilerEmbed extends Component {
     if (iFrame) {
       const language = this.codeLanguage(`oc-editor-${this.iFrameId}`);
       iFrame.src = `https://onecompiler.com/embed/${language}?listenToEvents=true&hideLanguageSelection=${!settings.show_language_switcher}&hideNewFileOption=${!settings.show_create_new_file_button}`;
-      // setTimeout(() => {
-      //   iFrame.style.display = "block";
-      //   iFrame.contentWindow.postMessage({
-      //     eventType: "populateCode",
-      //     language: language,
-      //     files: [
-      //       {
-      //         "name": `file.${this.file_extensions[language]}`,
-      //         "content": `${this.code}`
-      //       }
-      //     ]
-      //   }, "*");
-      // }, 1000);
-      iFrame.style.display = "block";
-      iFrame.contentWindow.postMessage({
-        eventType: "populateCode",
-        language: language,
-        files: [
-          {
-            "name": `${settings.default_file_name}.${this.file_extensions[language]}`,
-            "content": `${this.code}`
-          }
-        ]
-      }, "*");
+      setTimeout(() => {
+        iFrame.style.display = "block";
+        iFrame.contentWindow.postMessage({
+          eventType: "populateCode",
+          language: language,
+          files: [
+            {
+              "name": `file.${this.file_extensions[language]}`,
+              "content": `${this.code}`
+            }
+          ]
+        }, "*");
+      }, 1000);
+      // iFrame.style.display = "block";
+      // iFrame.contentWindow.postMessage({
+      //   eventType: "populateCode",
+      //   language: language,
+      //   files: [
+      //     {
+      //       "name": `${settings.default_file_name}.${this.file_extensions[language]}`,
+      //       "content": `${this.code}`
+      //     }
+      //   ]
+      // }, "*");
     }
   }
 
