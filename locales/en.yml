@@ -1,8 +1,8 @@
 en:
   theme_metadata:
     description: "OneCompiler code runner for posts with codeblocks."
-  settings:
-    default_file_name: "The default file name for files within the embedded editor"
-    show_language_switcher: "Show the language switcher in the embedded editor"
-    show_create_new_file_button: "Show the button to create new files in the embedded editor"
+    settings:
+      default_file_name: "The default file name for files within the embedded editor"
+      show_language_switcher: "Show the language switcher in the embedded editor"
+      show_create_new_file_button: "Show the button to create new files in the embedded editor"
   load_iframe_button: "Load iframe"
