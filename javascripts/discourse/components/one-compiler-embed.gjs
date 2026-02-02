@@ -133,7 +133,7 @@ export default class OneCompilerEmbed extends Component {
           language: language,
           files: [
             {
-              "name": `file.${this.file_extensions[language]}`,
+              "name": `${settings.default_file_name}.${this.file_extensions[language]}`,
               "content": `${this.code}`
             }
           ]
