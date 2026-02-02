@@ -91,7 +91,7 @@ export default class OneCompilerEmbed extends Component {
     console.log(iFrame);
     if (iFrame) {
       const language = this.codeLanguage(`oc-editor-${this.iFrameId}`);
-      console.log(`file.${this.file_extensions[language]`);
+      console.log(`file.${this.file_extensions[language]}`);
       iFrame.src = "https://onecompiler.com/embed/" + language + "?listenToEvents=true&hideLanguageSelection=true&hideNew=true";
       setTimeout(()=> {}, 1000);
       iFrame.style.display = "block";
