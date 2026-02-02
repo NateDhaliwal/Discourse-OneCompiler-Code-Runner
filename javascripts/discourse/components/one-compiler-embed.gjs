@@ -1,9 +1,12 @@
 import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 import { concat } from "@ember/helper";
 import { action } from "@ember/object";
 import DButton from "discourse/components/d-button";
 
 export default class OneCompilerEmbed extends Component {
+  @tracked modalShowing = false;
+
   file_extensions = {
     "python": "py",
     "py": "py",
@@ -16,11 +19,6 @@ export default class OneCompilerEmbed extends Component {
     "rb": "rb",
     "ruby": "rb",
     "sql": "sql"
-  }
-
-  constructor() {
-    super(...arguments);
-    // this.runInit();
   }
 
   get code() {
@@ -44,57 +42,25 @@ export default class OneCompilerEmbed extends Component {
     }
   }
 
-  // @action
-  // onIframeLoaded() {
-  //   const iFrame = document.getElementById('oc-editor');
-  //   console.log(this.codeLanguage);
-  //   console.log(this.code);
-  //   iFrame.contentWindow.postMessage({
-  //     eventType: "populateCode",
-  //     language: `${this.codeLang}`,
-  //     files: [
-  //       {
-  //         "name": `code.${this.file_extensions[this.codeLang]}`,
-  //         "content": `${this.code}`
-  //       }
-  //     ]
-  //   }, "*");
-  //   return;
-  // }
-
-  // @action
-  // runInit() {
-  //   const iFrame = document.createElement("iframe");
-  //   iFrame.frameBorder = "0";
-  //   iFrame.height = "450px";
-  //   iFrame.width = "100%";
-  //   console.log(this.codeLanguage(iFrame));
-  //   iFrame.src = `https://onecompiler.com/embed/${this.codeLanguage(iFrame)}?listenToEvents=true&hideLanguageSelection=true&hideNew=true`;
-  //   iFrame.id = `oc-editor-${this.iFrameId()}`;
-  //   iFrame.dataset.onecompiler = true;
-
-  //   // iFrame.contentWindow.postMessage({
-  //   //   eventType: "populateCode",
-  //   //   language: `${this.codeLanguage("oc-editor-" + this.iFrameId)}`,
-  //   //   files: [
-  //   //     {
-  //   //       "name": `code.${this.codeLanguage(iFrame)}`,
-  //   //       "content": `${this.code}`
-  //   //     }
-  //   //   ]
-  //   // }, "*");
-  // }
-
   @action
   loadIframe() {
     const iFrame = document.getElementById(`oc-editor-${this.iFrameId}`);
-    console.log(iFrame);
     if (iFrame) {
       const language = this.codeLanguage(`oc-editor-${this.iFrameId}`);
-      console.log(`file.${this.file_extensions[language]}`);
       iFrame.src = "https://onecompiler.com/embed/" + language + "?listenToEvents=true&hideLanguageSelection=true&hideNew=true";
-      setTimeout(()=> {}, 1000);
-      iFrame.style.display = "block";
+      this.modalShowing = true;
+      setTimeout(() => {
+        iFrame.contentWindow.postMessage({
+          eventType: "populateCode",
+          language: language,
+          files: [
+            {
+              "name": `file.${this.file_extensions[language]}`,
+              "content": `${this.code}`
+            }
+          ]
+        }, "*");
+      }, 1000);
       iFrame.contentWindow.postMessage({
         eventType: "populateCode",
         language: language,
@@ -111,19 +77,19 @@ export default class OneCompilerEmbed extends Component {
   
 
   <template>
-    <p>Hello</p>
     <DButton
       class="btn btn-text btn-primary"
       @action={{this.loadIframe}}
-      @label="Hi"
+      @label={{(themePrefix "load_iframe_button"}}
     />
-    <iframe
-      frameBorder="0"
-      height="450px"
-      width="100%"
-      id={{(concat "oc-editor-" this.iFrameId)}}
-      title="OneCompiler Code Editor"
-      style="display: none;"
-    ></iframe>
+    {{#if this.modalShowing}}
+      <iframe
+        frameBorder="0"
+        height="450px"
+        width="100%"
+        id={{(concat "oc-editor-" this.iFrameId)}}
+        title="OneCompiler Code Editor"
+      ></iframe>
+    {{/if}}
   </template>
 }
