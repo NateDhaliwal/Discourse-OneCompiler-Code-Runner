@@ -1,11 +1,9 @@
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
 import { concat } from "@ember/helper";
 import { action } from "@ember/object";
 import DButton from "discourse/components/d-button";
 
 export default class OneCompilerEmbed extends Component {
-  @tracked modalShowing = false;
 
   file_extensions = {
     "python": "py",
@@ -49,9 +47,8 @@ export default class OneCompilerEmbed extends Component {
     if (iFrame) {
       const language = this.codeLanguage(`oc-editor-${this.iFrameId}`);
       iFrame.src = "https://onecompiler.com/embed/" + language + "?listenToEvents=true&hideLanguageSelection=true&hideNew=true";
-      this.modalShowing = true;
-      console.log(this.modalShowing);
       setTimeout(() => {
+        iFrame.style.display = "block";
         iFrame.contentWindow.postMessage({
           eventType: "populateCode",
           language: language,
@@ -63,6 +60,7 @@ export default class OneCompilerEmbed extends Component {
           ]
         }, "*");
       }, 1000);
+      iFrame.style.display = "block";
       iFrame.contentWindow.postMessage({
         eventType: "populateCode",
         language: language,
@@ -84,14 +82,13 @@ export default class OneCompilerEmbed extends Component {
       @action={{this.loadIframe}}
       @label={{(themePrefix "load_iframe_button")}}
     />
-    {{#if this.modalShowing}}
-      <iframe
-        frameBorder="0"
-        height="450px"
-        width="100%"
-        id={{(concat "oc-editor-" this.iFrameId)}}
-        title="OneCompiler Code Editor"
-      ></iframe>
-    {{/if}}
+    <iframe
+      frameBorder="0"
+      height="450px"
+      width="100%"
+      id={{(concat "oc-editor-" this.iFrameId)}}
+      title="OneCompiler Code Editor"
+      style="display: none;"
+    ></iframe>
   </template>
 }
