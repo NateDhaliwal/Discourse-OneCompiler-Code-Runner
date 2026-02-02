@@ -63,16 +63,16 @@ export default class OneCompilerEmbed extends Component {
     iFrame.height = "450px";
     iFrame.width = "100%";
     console.log(this.codeLanguage(iFrame));
-    iFrame.src = `https://onecompiler.com/embed/${this.codeLanguage(}?listenToEvents=true&hideLanguageSelection=true&hideNew=true`;
+    iFrame.src = `https://onecompiler.com/embed/${this.codeLanguage(iFrame)}?listenToEvents=true&hideLanguageSelection=true&hideNew=true`;
     iFrame.id = `oc-editor-${this.iFrameId()}`;
     iFrame.dataset.onecompiler = true;
 
     // iFrame.contentWindow.postMessage({
     //   eventType: "populateCode",
-    //   language: `${this.codeLanguage}`,
+    //   language: `${this.codeLanguage(iFrame)}`,
     //   files: [
     //     {
-    //       "name": `code.${this.codeLanguage}`,
+    //       "name": `code.${this.codeLanguage(iFrame)}`,
     //       "content": `${this.code}`
     //     }
     //   ]
@@ -92,7 +92,7 @@ export default class OneCompilerEmbed extends Component {
         language: `${language}`,
         files: [
           {
-            "name": `file.${this.file_extensions[this.codeLanguage]}`,
+            "name": `file.${this.file_extensions[language]}`,
             "content": `${this.code}`
           }
         ]
