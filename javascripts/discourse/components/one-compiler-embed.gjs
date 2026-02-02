@@ -112,13 +112,9 @@ export default class OneCompilerEmbed extends Component {
 
   codeLanguage(iFrame_id) {
     const codeblockContainer = document.getElementById(iFrame_id).parentElement.children[0]; // pre tag
-    console.log(codeblockContainer);
     if (codeblockContainer) {
       const codeWrapper = codeblockContainer.children[1]; // code tag
-      console.log(codeWrapper);
-      console.log(codeWrapper.classList[2]);
       const codeLang = codeWrapper.classList[2].split("language-")[1];
-      console.log(codeLang);
       return codeLang;
     }
   }
@@ -126,23 +122,22 @@ export default class OneCompilerEmbed extends Component {
   @action
   loadIframe() {
     const iFrame = document.getElementById(`oc-editor-${this.iFrameId}`);
-    console.log(iFrame);
     if (iFrame) {
       const language = this.codeLanguage(`oc-editor-${this.iFrameId}`);
       iFrame.src = `https://onecompiler.com/embed/${language}?listenToEvents=true&hideLanguageSelection=${!settings.show_language_switcher}&hideNewFileOption=${!settings.show_create_new_file_button}`;
-      setTimeout(() => {
-        iFrame.style.display = "block";
-        iFrame.contentWindow.postMessage({
-          eventType: "populateCode",
-          language: language,
-          files: [
-            {
-              "name": `file.${this.file_extensions[language]}`,
-              "content": `${this.code}`
-            }
-          ]
-        }, "*");
-      }, 1000);
+      // setTimeout(() => {
+      //   iFrame.style.display = "block";
+      //   iFrame.contentWindow.postMessage({
+      //     eventType: "populateCode",
+      //     language: language,
+      //     files: [
+      //       {
+      //         "name": `file.${this.file_extensions[language]}`,
+      //         "content": `${this.code}`
+      //       }
+      //     ]
+      //   }, "*");
+      // }, 1000);
       iFrame.style.display = "block";
       iFrame.contentWindow.postMessage({
         eventType: "populateCode",
@@ -156,8 +151,6 @@ export default class OneCompilerEmbed extends Component {
       }, "*");
     }
   }
-
-  
 
   <template>
     <DButton
