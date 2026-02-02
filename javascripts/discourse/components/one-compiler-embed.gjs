@@ -49,6 +49,7 @@ export default class OneCompilerEmbed extends Component {
       const language = this.codeLanguage(`oc-editor-${this.iFrameId}`);
       iFrame.src = "https://onecompiler.com/embed/" + language + "?listenToEvents=true&hideLanguageSelection=true&hideNew=true";
       this.modalShowing = true;
+      console.log(this.modalShowing);
       setTimeout(() => {
         iFrame.contentWindow.postMessage({
           eventType: "populateCode",
