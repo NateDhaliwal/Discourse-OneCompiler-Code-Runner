@@ -1,3 +1,11 @@
 default_file_name:
   default: "main"
-  type: "string"
+  type: string
+
+show_language_switcher:
+  default: false
+  type: bool
+
+show_create_new_file_button:
+  default: false
+  type: bool
