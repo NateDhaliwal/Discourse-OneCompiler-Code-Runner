@@ -112,7 +112,7 @@ export default class OneCompilerEmbed extends Component {
     <iframe
       frameBorder="0"
       height="450px"
-      width="100%
+      width="100%"
       id={{(concat "oc-editor-" this.iFrameId)}}
       title="OneCompiler Code Editor"
       style="display: none;"
