@@ -37,6 +37,7 @@ export default class OneCompilerEmbed extends Component {
     if (codeblockContainer) {
       const codeWrapper = codeblockContainer.children[1]; // code tag
       console.log(codeWrapper);
+      console.log(codeWrapper.classList[2]);
       const codeLang = codeWrapper.classList[2].split("lang-")[1];
       return codeLang;
     }
