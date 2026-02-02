@@ -141,7 +141,7 @@ export default class OneCompilerEmbed extends Component {
             }
           ]
         }, "*");
-      }, 1);
+      }, 1000);
 
       this.loading = false;
     }
@@ -151,7 +151,8 @@ export default class OneCompilerEmbed extends Component {
     <DButton
       class="btn btn-text btn-primary"
       @action={{this.loadIframe}}
-      @label={{(themePrefix "load_iframe_button")}}
+      @label={{(themePrefix "load_iframe_button_label")}}
+      @title={{(themePrefix "load_iframe_button_label")}}
     />
 
     <ConditionalLoadingSpinner @condition={{this.loading}} />
