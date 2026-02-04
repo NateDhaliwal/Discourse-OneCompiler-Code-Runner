@@ -146,8 +146,8 @@ export default class OneCompilerEmbed extends Component {
     <DButton
       class="btn btn-text btn-primary"
       @action={{this.loadIframe}}
-      @label={{(themePrefix "load_iframe_button_label")}}
-      @title={{(themePrefix "load_iframe_button_label")}}
+      @label={{themePrefix "load_iframe_button_label"}}
+      @title={{themePrefix "load_iframe_button_label"}}
     />
 
     <div class="code-editor">
@@ -155,7 +155,7 @@ export default class OneCompilerEmbed extends Component {
         frameBorder="0"
         height="450px"
         width="100%"
-        id={{(concat "oc-editor-" this.iFrameId)}}
+        id={{concat "oc-editor-" this.iFrameId}}
         title="OneCompiler Code Editor"
         style="display: none;"
       ></iframe>
