@@ -123,8 +123,9 @@ export default class OneCompilerEmbed extends Component {
       } catch (e) {
         if (e instanceof TypeError) {
           codeLang = codeWrapper.classList[0].split("lang-")[1];
-          if (codeLang === "bf" || codeLang === "brainfuck")
+          if (codeLang === "bf" || codeLang === "brainfuck") {
             codeLang = "brainfk";
+          }
         }
       }
       return codeLang;
