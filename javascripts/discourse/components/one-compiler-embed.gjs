@@ -117,15 +117,7 @@ export default class OneCompilerEmbed extends Component {
         .children[0]; // pre tag
     if (codeblockContainer) {
       const codeWrapper = codeblockContainer.children[1]; // code tag
-      let codeLang = "";
-      try {
-        codeLang = codeWrapper.classList[2].split("language-")[1];
-      } catch (e) {
-        if (e instanceof TypeError) {
-          codeLang = codeWrapper.classList[0].split("lang-")[1];
-          if (codeLang === "bf" || codeLang === "brainfuck") codeLang = "brainfk";
-        }
-      }
+      const codeLang = codeWrapper.classList[2].split("language-")[1];
       return codeLang;
     }
   }
