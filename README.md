@@ -1,5 +1,5 @@
-# **Theme Name**
+# **Discourse OneCompiler Code Runner**
 
-**Theme Summary**
+This component allows you to run code from codeblocks in an iFrame.
 
 For more information, please see: **url to meta topic**
