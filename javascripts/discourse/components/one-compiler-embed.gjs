@@ -117,7 +117,7 @@ export default class OneCompilerEmbed extends Component {
         .children[0]; // pre tag
     if (codeblockContainer) {
       const codeLang = codeblockContainer.dataset.codeWrap;
-      return codelang;
+      return codeLang;
     }
   }
 
