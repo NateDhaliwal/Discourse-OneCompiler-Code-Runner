@@ -7,5 +7,5 @@ show_language_switcher:
   type: bool
 
 show_create_new_file_button:
-  default: false
+  default: true
   type: bool
